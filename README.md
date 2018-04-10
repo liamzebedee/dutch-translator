@@ -1,9 +1,9 @@
 learndutch
 ==========
 
-Tool for learning Dutch.
+Tool for learning Dutch. ([video](https://i.imgur.com/BrTaJtg.gif))
 
-![Demo](https://i.imgur.com/BrTaJtg.gif)
+![Screenshot](./screenshot.png)
 
 Stack:
  - ES6
