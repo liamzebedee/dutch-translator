@@ -3,6 +3,7 @@ learndutch
 
 Tool for learning Dutch.
 
+![Demo](https://i.imgur.com/BrTaJtg.gifv)
 
 Stack:
  - ES6
