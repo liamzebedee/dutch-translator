@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+}
+
+textarea {
+    margin-top: 1em;
+}
+
+.words {
+    margin-top: 1em;
+}
+
+.words > div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.wordCtn.expanded {
+    padding: 0.25em 0;
+}
+
+.word {
+    display: inline-block;
+    cursor: pointer;
+    color: #111;
+    text-align: center;
+    transition: background 250ms;
+    user-select: none;
+    margin-bottom: 2px;
+}
+
+.wordCtn {
+    text-align: center;
+    padding: 0.2em 0;
+}
+
+.word.expanded {
+    display: block;
+    color: #999;
+}
+
+.word:hover  {
+    /* transform: translateY(-5px); */
+    border-bottom: 2px solid rgb(230, 230, 230);
+}
+
+.details {
+    transition: all 500ms;
+    transition-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+
+    pointer-events: none;
+
+    max-width: 0px;
+    max-height: 0px;
+    opacity: 0;
+}
+
+.viagra-enter .details {
+    display: block;
+}
+
+.viagra-enter-done .details {
+    display: block;
+    transition: all 500ms, opacity 250ms;
+    visibility: visible;
+    max-width: 500px;
+    max-height: 500px;
+    opacity: 1;
+}
+
+.viagra-exit .details {
+    visibility: hidden;
+}
+
+.viagra-exit-done {
+    display: none;
+}
+
+
+
+
+.filters {
+    display: block;
+}
+
+.filter {
+    cursor: pointer;
+    border: 1px solid rgb(114, 114, 114);
+    border-radius: 5px;
+    display: inline-block;
+    padding: .5em 1em;
+    margin: 0em 0.2em;
+    color: white;
+    user-select: none;
+}
+
+.filter:not(.active) {
+    background-color: white;
+    color: #111;
+}
+
+
+.spinner svg {
+    width: 16px;
+    height: 16px;
+    display: inline;
+}
