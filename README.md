@@ -18,9 +18,5 @@ Stack:
  - [en-pos](https://github.com/finnlp/en-pos) for improving translation accuracy based on matching the English/Dutch POS tags
 
 ## Install
- 1. `pip install Flask pynlpl`
- 2. `yarn install`
- 3. `yarn frog` (start Frog Docker container)
- 4. `yarn flask` (start Python proxy to Frog API)
- 2. `yarn web` (start Webpack) 
+ 1. `docker-compose -f docker-compose.dev.yml up`
  2. Open [localhost:3000](http://localhost:3000)

@@ -3,7 +3,11 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const app = express();
-const config = require('./webpack.config.js');
+let config = require('./webpack.prod.config.js');
+if(process.env.NODE_ENV === 'development') {
+    config = require('./webpack.dev.config.js');
+}
+
 const compiler = webpack(config);
 var proxy = require('http-proxy-middleware');
 
@@ -13,7 +17,10 @@ var proxy = require('http-proxy-middleware');
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
 }));
-app.use(require("webpack-hot-middleware")(compiler));
+
+if(process.env.NODE_ENV === 'development') {
+    app.use(require("webpack-hot-middleware")(compiler));
+}
 
 const BACKEND = 'http://flask:5000/'
 app.use('/backend',
