@@ -3,7 +3,7 @@ version: '2'
 services:
   web:
     image: 'jmfirth/webpack'
-    command: "sh -c 'node_modules/.bin/webpack --config webpack.prod.config.js -p'"
+    command: "sh -c 'yarn; node_modules/.bin/webpack --config webpack.prod.config.js -p'"
     working_dir: /src
     volumes:
       - ./:/src
