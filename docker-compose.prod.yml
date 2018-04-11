@@ -3,14 +3,21 @@ version: '2'
 services:
   web:
     image: 'jmfirth/webpack'
-    command: "sh -c 'yarn && yarn web'"
+    command: "sh -c 'node_modules/.bin/webpack --config webpack.prod.config.js -p'"
     working_dir: /src
     volumes:
       - ./:/src
-    ports:
-      - 3000:3000
+      - ./static:/src/static
     environment:
       NODE_ENV: 'production'
+    
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/
+      - ./static:/etc/nginx/html/
+    ports:
+      - 3000:80
   
   nlp:
     image: 'proycon/lamachine:latest'
@@ -20,7 +27,7 @@ services:
   
   flask:
     image: 'python:3'
-    command: "sh -c 'pip install -r requirements.txt; flask run --host=0.0.0.0'"
+    command: ["./wait-for.sh", "nlp:12345", "--", "./run.sh"]
     working_dir: /flask
     volumes:
       - ./flask:/flask
@@ -29,5 +36,3 @@ services:
      SERVER_NAME: "0.0.0.0:5000"
     expose:
      - 5000
-    links:
-      - nlp

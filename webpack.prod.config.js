@@ -23,7 +23,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['static']),
     new HtmlWebpackPlugin({
       title: 'Dutch Dawg'
     }),

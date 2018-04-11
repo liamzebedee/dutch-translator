@@ -24,7 +24,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['static']),
     new HtmlWebpackPlugin({
       title: 'Dutch Dawg'
     }),
@@ -32,7 +32,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    contentBase: './dist',
+    contentBase: './static',
     hot: true
   },
   devtool: 'inline-source-map',
