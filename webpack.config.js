@@ -7,7 +7,7 @@ module.exports = {
     entry: [
       'whatwg-fetch',
       'fetch-jsonp',
-      'webpack-hot-middleware/client',
+      'webpack-hot-middleware/client?:8080',
       './src/index.js'
     ],
     module: {

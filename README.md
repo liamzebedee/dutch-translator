@@ -6,6 +6,7 @@ Tool for learning Dutch. ([video](https://i.imgur.com/BrTaJtg.gif))
 ![Screenshot](./screenshot.png)
 
 Stack:
+ - Docker, Docker Compose
  - ES6
  - Webpack
  - React

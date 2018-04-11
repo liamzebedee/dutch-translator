@@ -15,7 +15,7 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(require("webpack-hot-middleware")(compiler));
 
-const BACKEND = 'http://0.0.0.0:5000/'
+const BACKEND = 'http://flask:5000/'
 app.use('/backend',
     proxy({
         target: BACKEND,

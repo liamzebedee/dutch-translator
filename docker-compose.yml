@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  web:
+    image: 'jmfirth/webpack'
+    command: "sh -c 'yarn && yarn web'"
+    working_dir: /src
+    volumes:
+      - ./:/src
+    ports:
+      - 3000:3000
+  
+  nlp:
+    image: 'proycon/lamachine:latest'
+    command: 'frog -S 12345'
+    expose:
+      - 12345
+  
+  flask:
+    image: 'python:3'
+    command: "sh -c 'pip install -r requirements.txt; flask run --host=0.0.0.0'"
+    working_dir: /flask
+    volumes:
+      - ./flask:/flask
+    environment:
+     FLASK_APP: "app.py"
+     FLASK_DEBUG: 1
+     SERVER_NAME: "0.0.0.0:5000"
+    expose:
+     - 5000
+    links:
+      - nlp
