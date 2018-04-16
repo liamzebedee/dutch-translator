@@ -2,10 +2,6 @@
     box-sizing: border-box;
 }
 
-@viewport {
-    width: device-width;
-}
-
 @media (max-width: 800px) {
     h2 {
         text-align: center;

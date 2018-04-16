@@ -6,6 +6,8 @@ import {
     expandAll
 } from '../actions';
 import React from 'react';
+import {Helmet} from "react-helmet";
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style.css';
@@ -56,6 +58,12 @@ class App extends React.Component {
 
     render() {
         return <div>
+            <Helmet>
+                <meta charset="utf-8"/>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            </Helmet>
+            
             <div className='container'>
                 <header>
                     <h2>Hurdy-Gurdy (Dutch) Translate</h2>
