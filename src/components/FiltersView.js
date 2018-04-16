@@ -17,7 +17,7 @@ String.prototype.capitalize = function() {
 
 const FiltersView = ({ filters, toggleFilter }) => {
     return <div>
-        <span>Filters:</span>
+        <span className='filtersTitle'>Filters</span>
 
         <div className="filters">
             {Object.keys(filters).map((filterName, i) => {
@@ -27,7 +27,10 @@ const FiltersView = ({ filters, toggleFilter }) => {
                     key={filterName}
                     className={classNames({ 
                         filter: true,
-                        active: filter.shown
+                        active: filter.shown,
+                        btn: true,
+                        'btn-secondary': true,
+                        'btn-sm': true
                     })} 
                     onClick={() => toggleFilter(filterName)}
                     style={{

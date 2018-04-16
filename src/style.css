@@ -2,6 +2,87 @@
     box-sizing: border-box;
 }
 
+@viewport {
+    width: device-width;
+}
+
+@media (max-width: 800px) {
+    h2 {
+        text-align: center;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 0.5em 15px;
+    }
+
+    header {
+        flex: 0 1;
+    }
+
+    .controls {
+        flex: 0 1;
+        order: 1;
+    }
+
+    .words {
+        margin-top: 1em;
+        flex: 1;
+    }
+
+    .wordCtn {
+        font-size: 1.1em;
+    }
+
+    .translateAllBtn {
+        display: none;
+    }
+    
+    .translationTitle {
+        display: inline;
+    }
+
+    .seeAllBtn {
+        float: right;
+    }
+}
+
+@media (min-width: 801px) {
+    h2 {
+        padding-top: 1em;
+    }
+
+    .seeAllBtn {
+        /* display: none; */
+    }
+
+    .translationTitle {
+    }
+
+    .container > * {
+        margin: 2em;
+    }
+}
+
+.seeAllBtn {
+    cursor: pointer;
+}
+
+.filtersTitle {
+    color: gray;
+    text-transform: uppercase;
+}
+
+.translationTitle {
+    color: gray;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.2em;
+    letter-spacing: -1;
+}
+
 textarea {
     margin-top: 1em;
 }
@@ -80,7 +161,10 @@ textarea {
 
 
 .filters {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
 }
 
 .filter {
@@ -88,8 +172,8 @@ textarea {
     border: 1px solid rgb(114, 114, 114);
     border-radius: 5px;
     display: inline-block;
-    padding: .5em 1em;
-    margin: 0em 0.2em;
+    /* padding: .5em 1em; */
+    /* margin: 0.2em 0.2em; */
     color: white;
     user-select: none;
 }

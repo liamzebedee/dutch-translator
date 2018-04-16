@@ -26,7 +26,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['static']),
     new HtmlWebpackPlugin({
-      title: 'Dutch Dawg'
+      template: './src/index.html'
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()

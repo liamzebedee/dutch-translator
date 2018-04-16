@@ -57,30 +57,27 @@ class App extends React.Component {
     render() {
         return <div>
             <div className='container'>
+                <header>
+                    <h2>Hurdy-Gurdy (Dutch) Translate</h2>
+                    <textarea className="form-control" onChange={this.updateDesc} rows="3" cols="120" placeholder="Type some Dutch..."></textarea>
 
+                    <button type="button" className="translateAllBtn btn btn-secondary btn-sm" onClick={() => this.props.expandAllTheWords(this.props.words)}>
+                        Translate all
+                    </button>
+                </header>
 
-                <textarea className="form-control" onChange={this.updateDesc} rows="3" cols="120" placeholder="Type some Dutch..."></textarea>
-
-                <br/>
-
-                <FiltersView/>
-
-                <button type="button" style={{ marginTop: '0.5em' }} className="btn btn-secondary btn-sm" onClick={() => {
-                    this.props.expandAll()
-                    this.props.words.map((word, i) => {
-                        if(!word.translation) this.props.loadTranslationForWord(i, word)
-                    })
-                }}>
-                    Translate all
-                </button>
-
-
-                    
-
-                <br/>
+                <div className='controls'>
+                    <FiltersView/>
+                </div>
         
                 <div className='words'>
-                    <h3>Translation</h3>
+                    <header>
+                        <h3 className='translationTitle'>Translation</h3>
+                        <small className="seeAllBtn" onClick={() => this.props.expandAllTheWords(this.props.words)}>
+                            ({ this.props.expandAllToggle === true ? 'hide' : 'see' } all)
+                        </small>
+                    </header>
+                    
 
                     { this.props.words 
                     ? this.renderAnnotation()
@@ -116,7 +113,13 @@ const mapDispatchToProps = dispatch => {
                 dispatch(loadTranslationForWord(wordIdx, word))
         },
         loadTranslationForWord: (i, word) => dispatch(loadTranslationForWord(i, word)),
-        expandAll: () => dispatch(expandAll())
+
+        expandAllTheWords: (words) => {
+            dispatch(expandAll())
+            words.map((word, i) => {
+                if(!word.translation) dispatch(loadTranslationForWord(i, word))
+            })
+        }
     }
 }
 

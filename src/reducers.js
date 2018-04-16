@@ -7,8 +7,8 @@ const initialState = {
 
 function processedText(state = {
     text: "",
-    words: null,
-    expandAllToggle: true,
+    words: [],
+    expandAllToggle: false,
 }, action) {
     switch(action.type) {
         case 'RECEIVE_PROCESSED_TEXT':
@@ -16,9 +16,31 @@ function processedText(state = {
                 text: action.text,
                 words: action.words.map((word) => {
                     let els = word;
-                    let typ = els[3].split('(')[0];
+                    let typ;
+                    let isPrepositionVerb = false;
+                    let infinitive;
+
+                    if(els[0].includes('_')) {
+                        isPrepositionVerb = true;
+
+                        // replace with space
+                        const replaceWordMultiple = (pos) => pos.replace('_', ' ')
+                        els[0] = replaceWordMultiple(els[0])
+                        els[1] = replaceWordMultiple(els[1])
+                        els[2] = replaceWordMultiple(els[2])
+                        els[3] = replaceWordMultiple(els[3])
+                        // we don't need the others.
+
+                        typ = 'WW'; // we label it a verb
+                        infinitive = els[0].replace(' ', '') + 'en'
+                    } else {
+                        typ = els[3].split('(')[0];
+                        infinitive = typ == 'WW' ? els[1] : '';
+                    }
+
                     let pronounciation = els[2];
-                    let infinitive = typ == 'WW' ? els[1] : '';
+                    
+
 
                     return {
                         word: word[0],
@@ -26,6 +48,7 @@ function processedText(state = {
                         typ,
                         pronounciation,
                         infinitive,
+                        isPrepositionVerb,
 
                         expanded: false,
                         translations: null
@@ -35,8 +58,12 @@ function processedText(state = {
         case 'TOGGLE_EXPAND_WORD':
             return Object.assign({}, state, {
                 words: state.words.map((word, i) => {
-                    if(i === action.idx) 
-                        word.expanded = !word.expanded;
+                    if(i === action.idx) {
+                        return {
+                            ...word,
+                            expanded: !word.expanded
+                        }
+                    }
                     return word;
                 })
             })
@@ -45,8 +72,10 @@ function processedText(state = {
             return Object.assign({}, state, {
                 expandAllToggle: !expandAllToggle,
                 words: state.words.map((word, i) => {
-                    word.expanded = expandAllToggle;
-                    return word;
+                    return {
+                        ...word,
+                        expanded: expandAllToggle
+                    }
                 })
             })
         case 'LOADED_TRANSLATION_FOR_WORD':

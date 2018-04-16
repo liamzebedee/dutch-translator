@@ -3,3 +3,4 @@ static/
 __pycache__
 settings.json
 .DS_Store
+flask/vendor

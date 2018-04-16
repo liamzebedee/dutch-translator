@@ -4,6 +4,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const app = express();
 let config = require('./webpack.prod.config.js');
+console.log(process.env.NODE_ENV)
 if(process.env.NODE_ENV === 'development') {
     config = require('./webpack.dev.config.js');
 }
@@ -34,6 +35,6 @@ app.use('/backend',
 )
 
 // Serve the files on port 3000.
-app.listen(3000, function () {
+app.listen(3000, '0.0.0.0', function () {
   console.log('Example app listening on port 3000!\n');
 });
