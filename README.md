@@ -1,6 +1,8 @@
 learndutch
 ==========
 
+https://liamz.co/blog/integrating-nlp-into-language-learning-with-dutch/
+
 Tool for learning Dutch. ([video](https://i.imgur.com/BrTaJtg.gif))
 
 ![Screenshot](./screenshot.png)
